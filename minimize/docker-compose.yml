@@ -1,0 +1,114 @@
+version: '3'
+services:
+
+## MONGOS
+  mongos01:
+    image: mongo:6.0.1
+    container_name: mongos01
+    command: mongos --port 27017 --configdb rs-configs/configs01:27017 --bind_ip_all
+    ports:
+      - 28010:27017
+    volumes:
+      - ./scripts:/scripts
+
+## Config Servers
+  configs01:
+    image: mongo:6.0.1
+    container_name: mongo-configs01
+    command: mongod --port 27017 --configsvr --replSet rs-configs
+    volumes:
+      - ./scripts:/scripts 
+    ports:
+      - 28020:27017
+    links:
+      - shard01-a
+      - shard02-a
+      - shard03-a 
+
+## Shards
+  ## Shards 01
+  shard01-a:
+    image: mongo:6.0.1
+    container_name: shard-01-node-a
+    command: mongod --port 27017 --shardsvr --replSet rs-shard01
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - 27117:27017
+    links:
+      - shard01-b
+      - shard01-c
+  shard01-b:
+    image: mongo:6.0.1
+    container_name: shard-01-node-b
+    command: mongod --port 27017 --shardsvr --replSet rs-shard01
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - 27118:27017
+  shard01-c:
+    image: mongo:6.0.1
+    container_name: shard-01-node-c
+    command: mongod --port 27017 --shardsvr --replSet rs-shard01
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - 27119:27017
+
+  ## Shards 02
+  shard02-a:
+    image: mongo:6.0.1
+    container_name: shard-02-node-a
+    command: mongod --port 27017 --shardsvr --replSet rs-shard02
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - 27217:27017
+    links:
+      - shard02-b
+      - shard02-c
+  shard02-b:
+    image: mongo:6.0.1
+    container_name: shard-02-node-b
+    command: mongod --port 27017 --shardsvr --replSet rs-shard02
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - 27218:27017
+  shard02-c:
+    image: mongo:6.0.1
+    container_name: shard-02-node-c
+    command: mongod --port 27017 --shardsvr --replSet rs-shard02
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - 27219:27017
+
+  ## Shards 03
+  shard03-a:
+    image: mongo:6.0.1
+    container_name: shard-03-node-a
+    command: mongod --port 27017 --shardsvr --replSet rs-shard03
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - 27317:27017
+    links:
+      - shard03-b
+      - shard03-c
+  shard03-b:
+    image: mongo:6.0.1
+    container_name: shard-03-node-b
+    command: mongod --port 27017 --shardsvr --replSet rs-shard03
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - 27318:27017
+  shard03-c:
+    image: mongo:6.0.1
+    container_name: shard-03-node-c
+    command: mongod --port 27017 --shardsvr --replSet rs-shard03
+    volumes:
+      - ./scripts:/scripts
+    ports:
+      - 27319:27017
