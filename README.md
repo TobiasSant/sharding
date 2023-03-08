@@ -2,6 +2,9 @@
 
 Three-node sharding with replication and data persistence
 
+Proof of concept of performance. Tag **[From a Shard Key Range](https://www.mongodb.com/docs/v3.2/tutorial/administer-shard-tags/#tag-a-shard)** is allocated to a small space without maintaining scalability.
+
+
 ## Environment configuration
 > If you do not install the following programs, please install them only once 	:crossed_fingers:
 
