@@ -12,7 +12,12 @@ Tag **[From a Shard Key Range](https://www.mongodb.com/docs/v3.2/tutorial/admini
 ## Environment configuration
 > If you do not install the following programs, please install them only once 	:crossed_fingers:
 
-[Install docker :whale2:](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+- [Install docker :whale2:](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+
+Optional:
+> To view and enter data in the db in a more user-friendly mode
+> 
+> [Install robo3t :robot:](https://snapcraft.io/install/robo3t-snap/ubuntu)
 
 
 ## Use	:dna:		
@@ -37,6 +42,9 @@ docker-compose down
 ```
 docker-compose down -v --rmi all --remove-orphans
 ```
+
+* View the data:
+Open robo3t and connect to a specific port listed in `docker ps -a`
 
 ## Pipeline files
 
