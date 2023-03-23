@@ -8,6 +8,13 @@ Sharding is not being applied for horizontal growth and scalability of the syste
  
 Tag **[From a Shard Key Range](https://www.mongodb.com/docs/v3.2/tutorial/administer-shard-tags/#tag-a-shard)** is allocated to a small space without maintaining scalability.
 
+- **Diagram of the docker to be deployed and its characteristics:** 
+![Diagram of the docker to be deployed and its characteristics](/info/mongo-cluster-example.drawio.png)
+
+- **Diagram of an example application and its operation:**
+
+    This example has the same characteristics as the previous diagram but changes the docker locations. With this it is possible to have isolated control systems with data redundancy.
+    ![Diagram of an example application and its operation](/info/mongo-cluster-apply.drawio.png)
 
 ## Environment configuration
 > If you do not install the following programs, please install them only once 	:crossed_fingers:
